@@ -1,3 +1,9 @@
+## 1.0.2 (2021-12-14)
+
+### Fix
+
+- **Artifacts**: fix for artifacts not being added in maven publish
+
 ## 1.0.1 (2021-12-14)
 
 ### Fix
