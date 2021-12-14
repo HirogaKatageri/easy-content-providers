@@ -10,13 +10,18 @@ android {
         minSdkVersion 16
         targetSdkVersion 31
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = projectVersion
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -27,10 +32,12 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            maven(MavenPublication) {
+            release(MavenPublication) {
+                from components.release
+
                 groupId = "dev.hirogakatageri.easy-content-providers"
                 artifactId = "providers-android"
-                version = "1.0.0"
+                version = projectVersion
 
                 pom {
                     name = "Easy Content Providers - Android"
