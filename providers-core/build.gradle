@@ -1,57 +1,54 @@
-apply plugin: 'com.android.library'
+plugins {
+    id("com.android.library")
+    id("maven-publish")
+}
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdk = 31
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 16
+        targetSdkVersion 31
+        versionCode = 1
+        versionName = "1.0.0"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'providers-core'
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = "dev.hirogakatageri.easy-content-providers"
+                artifactId = "providers-core"
+                version = "1.0.0"
 
-    publishedGroupId = 'me.everything'
-    libraryName = 'Providers Core'
-    artifact = 'providers-core'
+                pom {
+                    name = "Easy Content Providers - Core"
+                    description = "Simple ORM annotations for your own model and Android content provider"
+                    url = "https://github.com/HirogaKatageri/easy-content-providers"
 
-    libraryDescription = 'Simple ORM annotations for your own model and Android content provider'
+                    licenses {
+                        license {
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
 
-    siteUrl = 'https://github.com/EverythingMe/easy-content-providers'
-    gitUrl = 'https://github.com/EverythingMe/easy-content-providers.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'sromku'
-    developerName = 'Roman Kushnarenko'
-    developerEmail = 'sromku@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-        classpath 'com.github.dcendents:android-maven-plugin:1.2'
+                    developers {
+                        developer {
+                            id = "sromku"
+                            name = "Roman Kushnarenko"
+                            email = "sromku@gmail.com"
+                        }
+                    }
+                }
+            }
+        }
     }
 }

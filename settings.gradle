@@ -1,1 +1,4 @@
-include ':app', ':providers-core', ':providers-android', ':providers-stetho'
+//include ":app"
+include ":providers-core"
+include ":providers-android"
+//include ":providers-stetho"
